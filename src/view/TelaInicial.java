@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ListaPaciente;
 import model.Paciente;
@@ -70,6 +71,11 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jbtnExcluirConsulta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnExcluirConsulta.setText("EXCLUIR CONSUILTA");
+        jbtnExcluirConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnExcluirConsultaActionPerformed(evt);
+            }
+        });
 
         jbtnFinalizarConsulta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnFinalizarConsulta.setText("FINALIZAR CONSULTA");
@@ -129,6 +135,40 @@ public class TelaInicial extends javax.swing.JFrame {
         telaCadastro.MostrarTela(this);
     }//GEN-LAST:event_jbtnNovaConsultaActionPerformed
 
+    private void jbtnExcluirConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnExcluirConsultaActionPerformed
+        excluirPaciente(getPosicaoPaciente());
+    }//GEN-LAST:event_jbtnExcluirConsultaActionPerformed
+
+    private int getPosicaoPaciente() {
+        int posicaoPaciente = jtblAgendamento.getSelectedRow();
+
+        if (posicaoPaciente <= -1) {
+            JOptionPane.showMessageDialog(null, "Selecione um paciente para excluir.");
+        }
+        return posicaoPaciente;
+    }
+
+    private void excluirPaciente(int posicaoPaciente) {
+        if (posicaoPaciente >= 0) {
+            String[] options = {"Sim", "Não"};
+            
+            int deletar = JOptionPane.showOptionDialog(rootPane, "Tem certeza que deseja excluir esse paciente?", "Exclusão do Paciente",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[1]);
+            
+            if(deletar == 0){
+                listaPacientes.remove(posicaoPaciente);
+                atualizarTabela();
+            }else{
+                jtblAgendamento.clearSelection();
+            }
+            
+        }
+    }
+
     public void atualizarTabela() {
         if (!listaPacientes.isEmpty()) {
             Paciente paciente;
@@ -141,21 +181,20 @@ public class TelaInicial extends javax.swing.JFrame {
                 String[] dadosLinha = {paciente.getNome(), paciente.getCpf(),
                     paciente.getTelefone(), paciente.getDataConsulta(),
                     paciente.getJaPaciente(), paciente.getConsultaRealizadaPermanete()};
-                
+
                 tabelaModelo.addRow(dadosLinha);
             }
             jtblAgendamento.setModel(tabelaModelo);
-        }else{
+        } else {
             tabelaModelo = new DefaultTableModel(tabelaColunas, 0);
             jtblAgendamento.setModel(tabelaModelo);
         }
     }
 
-
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -167,27 +206,23 @@ public static void main(String args[]) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class  
+            java.util.logging.Logger.getLogger(TelaInicial.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaInicial.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaInicial.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaInicial.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
