@@ -35,9 +35,12 @@ public class TelaInicial extends javax.swing.JFrame {
         jbtnFinalizarConsulta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Agendamento do Paciente");
 
         jlblBemVindo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jlblBemVindo.setText("Bem-vindo ao Sistema de Agendamento");
+
+        jscrllpnAgendamento.setToolTipText("");
 
         jtblAgendamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -57,10 +60,18 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         jscrllpnAgendamento.setViewportView(jtblAgendamento);
 
+        jbtnNovaConsulta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnNovaConsulta.setText("NOVA CONSULTA");
+        jbtnNovaConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnNovaConsultaActionPerformed(evt);
+            }
+        });
 
+        jbtnExcluirConsulta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnExcluirConsulta.setText("EXCLUIR CONSUILTA");
 
+        jbtnFinalizarConsulta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnFinalizarConsulta.setText("FINALIZAR CONSULTA");
 
         javax.swing.GroupLayout pnlAgendamentoLayout = new javax.swing.GroupLayout(pnlAgendamento);
@@ -80,7 +91,7 @@ public class TelaInicial extends javax.swing.JFrame {
                                 .addComponent(jbtnExcluirConsulta)
                                 .addGap(18, 18, 18)
                                 .addComponent(jbtnFinalizarConsulta)))
-                        .addGap(0, 186, Short.MAX_VALUE)))
+                        .addGap(0, 149, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlAgendamentoLayout.setVerticalGroup(
@@ -106,11 +117,17 @@ public class TelaInicial extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtnNovaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNovaConsultaActionPerformed
+            TelaCadastro telaCadastro = new TelaCadastro();
+            telaCadastro.setVisible(true);
+    }//GEN-LAST:event_jbtnNovaConsultaActionPerformed
 
     /**
      * @param args the command line arguments
