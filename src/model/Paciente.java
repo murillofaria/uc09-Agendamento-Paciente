@@ -9,7 +9,7 @@ public class Paciente {
     private String consultaObservacoes;
     private String ConsultaRealizada = "Não";
     private String JaPaciente = "Não";
-    private String ConsultaRealizadaPermanete = "Não";
+    private String ConsultaRealizadaPermanente = "Não";
 
     public String getNome() {
         return nome;
@@ -68,11 +68,11 @@ public class Paciente {
     }
 
     public String getConsultaRealizadaPermanete() {
-        return ConsultaRealizadaPermanete;
+        return ConsultaRealizadaPermanente;
     }
 
     public void setConsultaRealizadaPermanete(String ConsultaRealizadaPermanete) {
-        this.ConsultaRealizadaPermanete = ConsultaRealizadaPermanete;
+        this.ConsultaRealizadaPermanente = ConsultaRealizadaPermanete;
     }
 
 }

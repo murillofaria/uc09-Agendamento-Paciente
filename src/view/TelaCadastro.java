@@ -4,17 +4,26 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+import model.ListaPaciente;
+import model.Paciente;
+
 /**
  *
  * @author Murillo
  */
 public class TelaCadastro extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCadastro
-     */
+    Paciente paciente = new Paciente();
+    TelaInicial telaInicial = new TelaInicial();
+
     public TelaCadastro() {
         initComponents();
+    }
+    
+    public void MostrarTela(TelaInicial obj){
+        this.telaInicial = obj;
+        setVisible(true);
     }
 
     /**
@@ -61,6 +70,11 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jbtnCadastrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnCadastrar.setText("CADASTRAR");
+        jbtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnlCadastroLayout = new javax.swing.GroupLayout(jpnlCadastro);
         jpnlCadastro.setLayout(jpnlCadastroLayout);
@@ -133,6 +147,25 @@ public class TelaCadastro extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCadastrarActionPerformed
+        if (jtxtNomePaciente.getText().isEmpty() || jftfTelefone.getText().isEmpty() || jftfCpf.getText().isEmpty() || jftfDataConsulta.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
+        } else {
+            paciente.setNome(jtxtNomePaciente.getText());
+            paciente.setTelefone(jftfTelefone.getText());
+            paciente.setCpf(jftfCpf.getText());
+            paciente.setDataConsulta(jftfDataConsulta.getText());
+
+            if (jcboxJaPaciente.isSelected()) {
+                paciente.setJaPaciente("Sim");
+            }
+            ListaPaciente.Adicionar(paciente);
+            telaInicial.atualizarTabela();
+            dispose();
+        }
+
+    }//GEN-LAST:event_jbtnCadastrarActionPerformed
 
     /**
      * @param args the command line arguments

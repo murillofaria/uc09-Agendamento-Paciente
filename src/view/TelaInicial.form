@@ -103,8 +103,8 @@
                     <Column editable="true" title="CPF" type="java.lang.String"/>
                     <Column editable="true" title="Telefone" type="java.lang.String"/>
                     <Column editable="true" title="Data" type="java.lang.String"/>
-                    <Column editable="true" title="J&#xe1; &#xe9; paciente?" type="java.lang.Boolean"/>
-                    <Column editable="true" title="Consulta Realizada" type="java.lang.Boolean"/>
+                    <Column editable="true" title="J&#xe1; &#xe9; paciente?" type="java.lang.String"/>
+                    <Column editable="true" title="Consulta Realizada" type="java.lang.String"/>
                   </Table>
                 </Property>
               </Properties>

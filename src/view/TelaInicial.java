@@ -1,18 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
-/**
- *
- * @author Murillo
- */
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.ListaPaciente;
+import model.Paciente;
+
 public class TelaInicial extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaInicial
-     */
+    private final String[] tabelaColunas = {"Paciente", "CPF", "Telefone", "Data", "Já é paciente", "Consulta Realizada"};
+
+    DefaultTableModel tabelaModelo = new DefaultTableModel(tabelaColunas, 0);
+
+    private List<Paciente> listaPacientes = ListaPaciente.Listar();
+
     public TelaInicial() {
         initComponents();
     }
@@ -51,7 +51,7 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -125,14 +125,37 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnNovaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNovaConsultaActionPerformed
-            TelaCadastro telaCadastro = new TelaCadastro();
-            telaCadastro.setVisible(true);
+        TelaCadastro telaCadastro = new TelaCadastro();
+        telaCadastro.MostrarTela(this);
     }//GEN-LAST:event_jbtnNovaConsultaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public void atualizarTabela() {
+        if (!listaPacientes.isEmpty()) {
+            Paciente paciente;
+
+            tabelaModelo = new DefaultTableModel(tabelaColunas, 0);
+
+            for (int i = 0; i < listaPacientes.size(); i++) {
+                paciente = listaPacientes.get(i);
+
+                String[] dadosLinha = {paciente.getNome(), paciente.getCpf(),
+                    paciente.getTelefone(), paciente.getDataConsulta(),
+                    paciente.getJaPaciente(), paciente.getConsultaRealizadaPermanete()};
+                
+                tabelaModelo.addRow(dadosLinha);
+            }
+            jtblAgendamento.setModel(tabelaModelo);
+        }else{
+            tabelaModelo = new DefaultTableModel(tabelaColunas, 0);
+            jtblAgendamento.setModel(tabelaModelo);
+        }
+    }
+
+
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -143,16 +166,28 @@ public class TelaInicial extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaInicial.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaInicial.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaInicial.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaInicial.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
