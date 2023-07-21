@@ -60,11 +60,29 @@ public class TelaCadastro extends javax.swing.JFrame {
         jlblTelefone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jlblTelefone.setText("Telefone:");
 
+        try {
+            jftfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         jlblCpf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jlblCpf.setText("CPF:");
 
+        try {
+            jftfCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         jlblDataConsulta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jlblDataConsulta.setText("Data da Consulta:");
+
+        try {
+            jftfDataConsulta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jcboxJaPaciente.setText("Já é Paciente");
 

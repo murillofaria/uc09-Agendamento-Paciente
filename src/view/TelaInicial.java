@@ -79,6 +79,11 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jbtnFinalizarConsulta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbtnFinalizarConsulta.setText("FINALIZAR CONSULTA");
+        jbtnFinalizarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnFinalizarConsultaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlAgendamentoLayout = new javax.swing.GroupLayout(pnlAgendamento);
         pnlAgendamento.setLayout(pnlAgendamentoLayout);
@@ -139,6 +144,11 @@ public class TelaInicial extends javax.swing.JFrame {
         excluirPaciente(getPosicaoPaciente());
     }//GEN-LAST:event_jbtnExcluirConsultaActionPerformed
 
+    private void jbtnFinalizarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnFinalizarConsultaActionPerformed
+        TelaDetalhe telaDetalhe = new TelaDetalhe();
+        telaDetalhe.MostrarTela(this, getPosicaoPaciente());
+    }//GEN-LAST:event_jbtnFinalizarConsultaActionPerformed
+
     private int getPosicaoPaciente() {
         int posicaoPaciente = jtblAgendamento.getSelectedRow();
 
@@ -180,7 +190,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
                 String[] dadosLinha = {paciente.getNome(), paciente.getCpf(),
                     paciente.getTelefone(), paciente.getDataConsulta(),
-                    paciente.getJaPaciente(), paciente.getConsultaRealizadaPermanete()};
+                    paciente.getJaPaciente(), paciente.getConsultaRealizada()};
 
                 tabelaModelo.addRow(dadosLinha);
             }
