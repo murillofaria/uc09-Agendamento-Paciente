@@ -167,7 +167,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCadastrarActionPerformed
-        if (jtxtNomePaciente.getText().isEmpty() || jftfTelefone.getText().isEmpty() || jftfCpf.getText().isEmpty() || jftfDataConsulta.getText().isEmpty()) {
+        if (jtxtNomePaciente.getText().isEmpty() || jftfTelefone.getText().equals("(  )         ") || jftfCpf.getText().equals("   .   .   -  ") || jftfDataConsulta.getText().equals("  /  /    ")) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
         } else {
             paciente.setNome(jtxtNomePaciente.getText());
